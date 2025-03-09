@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 import StackComponent from "./components/StackComponent";
 import QueueComponent from "./components/QueueComponent";
+import InvertedQueueComponent from "./components/InvertedQueueComponent";
 import HashTableComponent from "./components/HashTableComponent";
 import LinkedListComponent from "./components/LinkedListComponent";
 import SortingComponent from "./components/SortingComponent";
@@ -15,12 +16,7 @@ export default function App() {
                     <NavLink className="navbar-brand fw-bold me-4" to="/">
                         Interactive Data Structures
                     </NavLink>
-                    <button
-                        className="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarNav"
-                    >
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
@@ -30,6 +26,9 @@ export default function App() {
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/queue">Queue</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/inverted-queue">Inverted Queue</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/hash-table">Hash Table</NavLink>
@@ -50,6 +49,7 @@ export default function App() {
                 <Routes>
                     <Route path="/stack" element={<StackComponent />} />
                     <Route path="/queue" element={<QueueComponent />} />
+                    <Route path="/inverted-queue" element={<InvertedQueueComponent />} />
                     <Route path="/hash-table" element={<HashTableComponent />} />
                     <Route path="/linked-list" element={<LinkedListComponent />} />
                     <Route path="/sorting" element={<SortingComponent />} />
