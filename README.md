@@ -7,7 +7,7 @@ node examples/filename.js
 
 Run React App:
 
-npm install
+<code>npm install</code>
 
 npm start
 
