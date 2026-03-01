@@ -78,6 +78,18 @@ export default function App() {
                     </div>
                 </nav>
 
+                <div className="bg-light border rounded shadow-sm px-3 py-2 mt-2 mb-3">
+                    <div className="d-flex flex-wrap align-items-center gap-2">
+                        <span className="fw-semibold text-secondary me-2">Use Cases:</span>
+                        <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/arrays">
+                            Arrays Use Case
+                        </NavLink>
+                        <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/stacks">
+                            Stack Use Case
+                        </NavLink>
+                    </div>
+                </div>
+
                 <Routes>
                     <Route path="/" element={<Navigate to="/arrays" replace />} />
                     <Route path="/arrays" element={<ArraysComponent />} />
