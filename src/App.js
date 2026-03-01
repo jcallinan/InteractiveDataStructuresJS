@@ -50,31 +50,6 @@ export default function App() {
                             </li>
                         </ul>
 
-                        <ul className="navbar-nav">
-                            <li className="nav-item dropdown">
-                                <button
-                                    className="nav-link dropdown-toggle btn btn-link text-white text-decoration-none"
-                                    id="useCasesMenu"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                    type="button"
-                                >
-                                    Use Cases
-                                </button>
-                                <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="useCasesMenu">
-                                    <li>
-                                        <NavLink className="dropdown-item" to="/use-cases/arrays">
-                                            Arrays Use Case
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink className="dropdown-item" to="/use-cases/stacks">
-                                            Stacks Use Case
-                                        </NavLink>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
                     </div>
                 </nav>
 
