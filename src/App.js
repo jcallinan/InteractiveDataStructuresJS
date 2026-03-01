@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, NavLink, Navigate } from "react-router-dom";
 import StackComponent from "./components/StackComponent";
 import QueueComponent from "./components/QueueComponent";
 import InvertedQueueComponent from "./components/InvertedQueueComponent";
@@ -7,6 +7,9 @@ import HashTableComponent from "./components/HashTableComponent";
 import LinkedListComponent from "./components/LinkedListComponent";
 import SortingComponent from "./components/SortingComponent";
 import TreeComponent from "./components/TreeComponent";
+import ArraysComponent from "./components/ArraysComponent";
+import ArrayUseCaseComponent from "./components/ArrayUseCaseComponent";
+import StackUseCaseComponent from "./components/StackUseCaseComponent";
 
 export default function App() {
     return (
@@ -20,7 +23,10 @@ export default function App() {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav ms-auto">
+                        <ul className="navbar-nav me-auto">
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/arrays">Arrays</NavLink>
+                            </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/stack">Stack</NavLink>
                             </li>
@@ -46,7 +52,21 @@ export default function App() {
                     </div>
                 </nav>
 
+                <div className="bg-light border rounded shadow-sm px-3 py-2 mt-2 mb-3">
+                    <div className="d-flex flex-wrap align-items-center gap-2">
+                        <span className="fw-semibold text-secondary me-2">Use Cases:</span>
+                        <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/arrays">
+                            Arrays Use Case
+                        </NavLink>
+                        <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/stacks">
+                            Stack Use Case
+                        </NavLink>
+                    </div>
+                </div>
+
                 <Routes>
+                    <Route path="/" element={<Navigate to="/arrays" replace />} />
+                    <Route path="/arrays" element={<ArraysComponent />} />
                     <Route path="/stack" element={<StackComponent />} />
                     <Route path="/queue" element={<QueueComponent />} />
                     <Route path="/inverted-queue" element={<InvertedQueueComponent />} />
@@ -54,6 +74,9 @@ export default function App() {
                     <Route path="/linked-list" element={<LinkedListComponent />} />
                     <Route path="/sorting" element={<SortingComponent />} />
                     <Route path="/tree" element={<TreeComponent />} />
+                    <Route path="/use-cases/arrays" element={<ArrayUseCaseComponent />} />
+                    <Route path="/use-cases/stacks" element={<StackUseCaseComponent />} />
+                    <Route path="*" element={<Navigate to="/arrays" replace />} />
                 </Routes>
             </div>
         </Router>
