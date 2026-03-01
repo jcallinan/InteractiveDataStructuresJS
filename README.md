@@ -2,9 +2,12 @@
 Interactive Data Structures - examples of common data structures in JavaScript
 
 Run examples using:
-node examples/filename.js
+
+<code>node examples/filename.js</code>
 
 Run React App:
-npm install
-npm start
+
+<code>npm install</code>
+
+<code>npm start</code>
 
