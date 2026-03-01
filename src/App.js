@@ -49,17 +49,43 @@ export default function App() {
                                 <NavLink className="nav-link" to="/tree">Tree</NavLink>
                             </li>
                         </ul>
+
+                        <ul className="navbar-nav">
+                            <li className="nav-item dropdown">
+                                <button
+                                    className="nav-link dropdown-toggle btn btn-link text-white text-decoration-none"
+                                    id="useCasesMenu"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                    type="button"
+                                >
+                                    Use Cases
+                                </button>
+                                <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="useCasesMenu">
+                                    <li>
+                                        <NavLink className="dropdown-item" to="/use-cases/arrays">
+                                            Arrays Use Case
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink className="dropdown-item" to="/use-cases/stacks">
+                                            Stacks Use Case
+                                        </NavLink>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </nav>
 
                 <div className="bg-light border rounded shadow-sm px-3 py-2 mt-2 mb-3">
                     <div className="d-flex flex-wrap align-items-center gap-2">
-                        <span className="fw-semibold text-secondary me-2">Real-world Examples:</span>
+                        <span className="fw-semibold text-secondary me-2">Use Cases:</span>
                         <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/arrays">
-                            Arrays Example
+                            Arrays Use Case
                         </NavLink>
                         <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/stacks">
-                            Stacks Example
+                            Stack Use Case
                         </NavLink>
                     </div>
                 </div>
