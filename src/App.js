@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, NavLink, Navigate } from "react-router-dom";
 import StackComponent from "./components/StackComponent";
 import QueueComponent from "./components/QueueComponent";
+import DequeComponent from "./components/DequeComponent";
 import InvertedQueueComponent from "./components/InvertedQueueComponent";
 import HashTableComponent from "./components/HashTableComponent";
 import LinkedListComponent from "./components/LinkedListComponent";
@@ -10,6 +11,8 @@ import TreeComponent from "./components/TreeComponent";
 import ArraysComponent from "./components/ArraysComponent";
 import ArrayUseCaseComponent from "./components/ArrayUseCaseComponent";
 import StackUseCaseComponent from "./components/StackUseCaseComponent";
+import QueueUseCaseComponent from "./components/QueueUseCaseComponent";
+import DequeUseCaseComponent from "./components/DequeUseCaseComponent";
 
 export default function App() {
     return (
@@ -32,6 +35,9 @@ export default function App() {
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/queue">Queue</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/deque">Deque</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/inverted-queue">Inverted Queue</NavLink>
@@ -62,6 +68,12 @@ export default function App() {
                         <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/stacks">
                             Stack Use Case
                         </NavLink>
+                        <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/queue">
+                            Queue Use Case
+                        </NavLink>
+                        <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/deque">
+                            Deque Use Case
+                        </NavLink>
                     </div>
                 </div>
 
@@ -70,6 +82,7 @@ export default function App() {
                     <Route path="/arrays" element={<ArraysComponent />} />
                     <Route path="/stack" element={<StackComponent />} />
                     <Route path="/queue" element={<QueueComponent />} />
+                    <Route path="/deque" element={<DequeComponent />} />
                     <Route path="/inverted-queue" element={<InvertedQueueComponent />} />
                     <Route path="/hash-table" element={<HashTableComponent />} />
                     <Route path="/linked-list" element={<LinkedListComponent />} />
@@ -77,6 +90,8 @@ export default function App() {
                     <Route path="/tree" element={<TreeComponent />} />
                     <Route path="/use-cases/arrays" element={<ArrayUseCaseComponent />} />
                     <Route path="/use-cases/stacks" element={<StackUseCaseComponent />} />
+                    <Route path="/use-cases/queue" element={<QueueUseCaseComponent />} />
+                    <Route path="/use-cases/deque" element={<DequeUseCaseComponent />} />
                     <Route path="*" element={<Navigate to="/arrays" replace />} />
                 </Routes>
             </div>
