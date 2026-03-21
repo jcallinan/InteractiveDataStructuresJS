@@ -6,6 +6,8 @@ import DequeComponent from "./components/DequeComponent";
 import InvertedQueueComponent from "./components/InvertedQueueComponent";
 import HashTableComponent from "./components/HashTableComponent";
 import LinkedListComponent from "./components/LinkedListComponent";
+import SetComponent from "./components/SetComponent";
+import DictionaryComponent from "./components/DictionaryComponent";
 import SortingComponent from "./components/SortingComponent";
 import TreeComponent from "./components/TreeComponent";
 import ArraysComponent from "./components/ArraysComponent";
@@ -13,6 +15,10 @@ import ArrayUseCaseComponent from "./components/ArrayUseCaseComponent";
 import StackUseCaseComponent from "./components/StackUseCaseComponent";
 import QueueUseCaseComponent from "./components/QueueUseCaseComponent";
 import DequeUseCaseComponent from "./components/DequeUseCaseComponent";
+import LinkedListUseCaseComponent from "./components/LinkedListUseCaseComponent";
+import SetUseCaseComponent from "./components/SetUseCaseComponent";
+import DictionaryUseCaseComponent from "./components/DictionaryUseCaseComponent";
+import HashUseCaseComponent from "./components/HashUseCaseComponent";
 
 export default function App() {
     return (
@@ -49,6 +55,12 @@ export default function App() {
                                 <NavLink className="nav-link" to="/linked-list">Linked List</NavLink>
                             </li>
                             <li className="nav-item">
+                                <NavLink className="nav-link" to="/set">Set</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/dictionary">Dictionary</NavLink>
+                            </li>
+                            <li className="nav-item">
                                 <NavLink className="nav-link" to="/sorting">Sorting</NavLink>
                             </li>
                             <li className="nav-item">
@@ -74,6 +86,18 @@ export default function App() {
                         <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/deque">
                             Deque Use Case
                         </NavLink>
+                        <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/linked-list">
+                            Linked List Use Cases
+                        </NavLink>
+                        <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/set">
+                            Set Use Cases
+                        </NavLink>
+                        <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/dictionary">
+                            Dictionary Use Cases
+                        </NavLink>
+                        <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/hash-table">
+                            Hash Use Cases
+                        </NavLink>
                     </div>
                 </div>
 
@@ -86,12 +110,18 @@ export default function App() {
                     <Route path="/inverted-queue" element={<InvertedQueueComponent />} />
                     <Route path="/hash-table" element={<HashTableComponent />} />
                     <Route path="/linked-list" element={<LinkedListComponent />} />
+                    <Route path="/set" element={<SetComponent />} />
+                    <Route path="/dictionary" element={<DictionaryComponent />} />
                     <Route path="/sorting" element={<SortingComponent />} />
                     <Route path="/tree" element={<TreeComponent />} />
                     <Route path="/use-cases/arrays" element={<ArrayUseCaseComponent />} />
                     <Route path="/use-cases/stacks" element={<StackUseCaseComponent />} />
                     <Route path="/use-cases/queue" element={<QueueUseCaseComponent />} />
                     <Route path="/use-cases/deque" element={<DequeUseCaseComponent />} />
+                    <Route path="/use-cases/linked-list" element={<LinkedListUseCaseComponent />} />
+                    <Route path="/use-cases/set" element={<SetUseCaseComponent />} />
+                    <Route path="/use-cases/dictionary" element={<DictionaryUseCaseComponent />} />
+                    <Route path="/use-cases/hash-table" element={<HashUseCaseComponent />} />
                     <Route path="*" element={<Navigate to="/arrays" replace />} />
                 </Routes>
             </div>

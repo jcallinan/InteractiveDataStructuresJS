@@ -11,3 +11,11 @@ Run React App:
 
 <code>npm start</code>
 
+
+
+Included examples:
+
+- `examples/linkedListExample.js`
+- `examples/setExample.js`
+- `examples/dictionaryExample.js`
+- `examples/hashTableExample.js`
