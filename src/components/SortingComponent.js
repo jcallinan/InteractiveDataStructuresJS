@@ -1,89 +1,166 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+
+const realWorldUseCases = [
+    {
+        title: "E-commerce product ranking",
+        description: "Sort products by price, rating, or popularity so shoppers can scan results quickly."
+    },
+    {
+        title: "Fast record lookup",
+        description: "Search algorithms locate exact IDs, usernames, or values without scanning every item."
+    }
+];
+
+const parseInput = (text) => text
+    .split(",")
+    .map((value) => Number.parseInt(value.trim(), 10))
+    .filter((value) => !Number.isNaN(value));
+
+const bubbleSort = (items) => {
+    const arr = [...items];
+    for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            }
+        }
+    }
+    return arr;
+};
+
+const linearSearch = (items, target) => {
+    for (let i = 0; i < items.length; i++) {
+        if (items[i] === target) return i;
+    }
+    return -1;
+};
+
+const binarySearch = (items, target) => {
+    let low = 0;
+    let high = items.length - 1;
+
+    while (low <= high) {
+        const mid = Math.floor((low + high) / 2);
+        if (items[mid] === target) return mid;
+        if (items[mid] < target) low = mid + 1;
+        else high = mid - 1;
+    }
+
+    return -1;
+};
 
 export default function SortingComponent() {
-    const [defaultArray, setDefaultArray] = useState([64, 34, 25, 12, 22, 11, 90]);
-    const [defaultSortedArray, setDefaultSortedArray] = useState([]);
-    const [userInput, setUserInput] = useState("");
-    const [userArray, setUserArray] = useState([]);
-    const [userSortedArray, setUserSortedArray] = useState([]);
-    const [output, setOutput] = useState("");
+    const [defaultArray] = useState([64, 34, 25, 12, 22, 11, 90]);
+    const [userInput, setUserInput] = useState("5, 3, 8, 1, 9, 6");
+    const [searchTarget, setSearchTarget] = useState("8");
+    const [sortedArray, setSortedArray] = useState([]);
+    const [output, setOutput] = useState("Sort your list, then run linear and binary search.");
 
-    // Original predefined sorting
-    const handleDefaultSort = () => {
-        const sorted = [...defaultArray].sort((a, b) => a - b);
-        setDefaultSortedArray(sorted);
-    };
+    const userArray = useMemo(() => parseInput(userInput), [userInput]);
 
-    // Handle input change for user-defined array
-    const handleUserInputChange = (e) => {
-        setUserInput(e.target.value);
-        const values = e.target.value
-            .split(",")
-            .map((val) => parseInt(val.trim()))
-            .filter((val) => !isNaN(val));
-        setUserArray(values);
-    };
-
-    // Bubble Sort for user-defined array
-    const bubbleSort = () => {
-        if (userArray.length === 0) {
-            setOutput("Please enter numbers to sort.");
+    const handleSort = () => {
+        if (!userArray.length) {
+            setOutput("Enter at least one valid number.");
             return;
         }
 
-        let arr = [...userArray];
-        let n = arr.length;
-        for (let i = 0; i < n - 1; i++) {
-            for (let j = 0; j < n - i - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-                }
-            }
+        const sorted = bubbleSort(userArray);
+        setSortedArray(sorted);
+        setOutput(`Bubble sort completed in ascending order: ${sorted.join(", ")}`);
+    };
+
+    const runSearch = (mode) => {
+        const target = Number.parseInt(searchTarget, 10);
+        if (Number.isNaN(target)) {
+            setOutput("Enter a numeric search target.");
+            return;
         }
 
-        setUserSortedArray(arr);
-        setOutput("User array sorted using Bubble Sort.");
+        const workingArray = mode === "binary" ? sortedArray : userArray;
+        if (!workingArray.length) {
+            setOutput(mode === "binary"
+                ? "Run bubble sort first so binary search has sorted input."
+                : "Enter numbers to search.");
+            return;
+        }
+
+        const index = mode === "binary"
+            ? binarySearch(workingArray, target)
+            : linearSearch(workingArray, target);
+
+        setOutput(index >= 0
+            ? `${mode === "binary" ? "Binary" : "Linear"} search found ${target} at index ${index}.`
+            : `${mode === "binary" ? "Binary" : "Linear"} search did not find ${target}.`);
     };
 
     return (
         <div className="card shadow-sm p-4">
-            <h2 className="mb-4">Sorting Algorithms</h2>
+            <h2 className="mb-2">Sorting and Searching Algorithms</h2>
+            <p className="text-muted mb-4">
+                Chapter 10: compare sorting and searching techniques with the same dataset.
+            </p>
 
-            {/* Original Predefined Sorting */}
-            <div className="mb-4 border-bottom pb-4">
-                <h4>Original Predefined Array Sorting</h4>
-                <p>Original Array: {defaultArray.join(", ")}</p>
-                <button className="btn btn-primary" onClick={handleDefaultSort}>
-                    Sort Array
-                </button>
-                <p className="mt-2">Sorted Array: {defaultSortedArray.length ? defaultSortedArray.join(", ") : "Not sorted yet."}</p>
+            <div className="row g-3 mb-4">
+                {realWorldUseCases.map((useCase) => (
+                    <div className="col-md-6" key={useCase.title}>
+                        <div className="border rounded h-100 p-3 bg-light">
+                            <h5>{useCase.title}</h5>
+                            <p className="mb-0">{useCase.description}</p>
+                        </div>
+                    </div>
+                ))}
             </div>
 
-            {/* Bubble Sort with User Input */}
-            <div>
-                <h4>Bubble Sort with Custom Input</h4>
+            <div className="mb-4 border-bottom pb-3">
+                <h5>Default Chapter Example</h5>
+                <p className="mb-0">Original Array: {defaultArray.join(", ")}</p>
+                <p className="mb-0">Sorted Array: {bubbleSort(defaultArray).join(", ")}</p>
+            </div>
+
+            <div className="mb-3">
+                <label className="form-label fw-semibold">Custom number list</label>
                 <input
-                    className="form-control mb-3"
-                    placeholder="Enter numbers separated by commas (e.g., 5, 3, 8, 1)"
+                    className="form-control"
                     value={userInput}
-                    onChange={handleUserInputChange}
+                    onChange={(e) => setUserInput(e.target.value)}
+                    placeholder="Enter numbers separated by commas"
                 />
-                <button className="btn btn-primary" onClick={bubbleSort}>
-                    Sort with Bubble Sort
-                </button>
-
-                <div className="alert alert-info mt-3">
-                    <strong>Output:</strong> {output || "No sorting done yet."}
+                <div className="d-grid d-md-flex gap-2 mt-2">
+                    <button className="btn btn-primary" onClick={handleSort}>Run Bubble Sort</button>
                 </div>
+            </div>
 
-                <div className="border rounded p-3 mt-3">
-                    <h5>Original User Array:</h5>
-                    <p>{userArray.length ? userArray.join(", ") : "No input provided yet."}</p>
+            <div className="row g-2 mb-3">
+                <div className="col-md-6">
+                    <input
+                        className="form-control"
+                        value={searchTarget}
+                        onChange={(e) => setSearchTarget(e.target.value)}
+                        placeholder="Search target"
+                    />
                 </div>
+                <div className="col-md-6 d-flex gap-2">
+                    <button className="btn btn-info flex-fill" onClick={() => runSearch("linear")}>Linear Search</button>
+                    <button className="btn btn-secondary flex-fill" onClick={() => runSearch("binary")}>Binary Search</button>
+                </div>
+            </div>
 
-                <div className="border rounded p-3 mt-3">
-                    <h5>Sorted User Array:</h5>
-                    <p>{userSortedArray.length ? userSortedArray.join(", ") : "No sorting done yet."}</p>
+            <div className="alert alert-info">
+                <strong>Output:</strong> {output}
+            </div>
+
+            <div className="row g-3">
+                <div className="col-md-6">
+                    <div className="border rounded p-3">
+                        <h6>Parsed Input</h6>
+                        <p className="mb-0">{userArray.length ? userArray.join(", ") : "No valid numbers yet."}</p>
+                    </div>
+                </div>
+                <div className="col-md-6">
+                    <div className="border rounded p-3">
+                        <h6>Sorted Input (for binary search)</h6>
+                        <p className="mb-0">{sortedArray.length ? sortedArray.join(", ") : "Sort not run yet."}</p>
+                    </div>
                 </div>
             </div>
         </div>
