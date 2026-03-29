@@ -10,6 +10,7 @@ import SetComponent from "./components/SetComponent";
 import DictionaryComponent from "./components/DictionaryComponent";
 import SortingComponent from "./components/SortingComponent";
 import TreeComponent from "./components/TreeComponent";
+import GraphComponent from "./components/GraphComponent";
 import ArraysComponent from "./components/ArraysComponent";
 import ArrayUseCaseComponent from "./components/ArrayUseCaseComponent";
 import StackUseCaseComponent from "./components/StackUseCaseComponent";
@@ -19,6 +20,8 @@ import LinkedListUseCaseComponent from "./components/LinkedListUseCaseComponent"
 import SetUseCaseComponent from "./components/SetUseCaseComponent";
 import DictionaryUseCaseComponent from "./components/DictionaryUseCaseComponent";
 import HashUseCaseComponent from "./components/HashUseCaseComponent";
+import TreeUseCaseComponent from "./components/TreeUseCaseComponent";
+import GraphUseCaseComponent from "./components/GraphUseCaseComponent";
 
 export default function App() {
     return (
@@ -66,6 +69,9 @@ export default function App() {
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/tree">Tree</NavLink>
                             </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/graph">Graph</NavLink>
+                            </li>
                         </ul>
 
                     </div>
@@ -98,6 +104,12 @@ export default function App() {
                         <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/hash-table">
                             Hash Use Cases
                         </NavLink>
+                        <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/tree">
+                            Tree Use Cases
+                        </NavLink>
+                        <NavLink className="btn btn-sm btn-outline-primary" to="/use-cases/graph">
+                            Graph Use Cases
+                        </NavLink>
                     </div>
                 </div>
 
@@ -114,6 +126,7 @@ export default function App() {
                     <Route path="/dictionary" element={<DictionaryComponent />} />
                     <Route path="/sorting" element={<SortingComponent />} />
                     <Route path="/tree" element={<TreeComponent />} />
+                    <Route path="/graph" element={<GraphComponent />} />
                     <Route path="/use-cases/arrays" element={<ArrayUseCaseComponent />} />
                     <Route path="/use-cases/stacks" element={<StackUseCaseComponent />} />
                     <Route path="/use-cases/queue" element={<QueueUseCaseComponent />} />
@@ -122,6 +135,8 @@ export default function App() {
                     <Route path="/use-cases/set" element={<SetUseCaseComponent />} />
                     <Route path="/use-cases/dictionary" element={<DictionaryUseCaseComponent />} />
                     <Route path="/use-cases/hash-table" element={<HashUseCaseComponent />} />
+                    <Route path="/use-cases/tree" element={<TreeUseCaseComponent />} />
+                    <Route path="/use-cases/graph" element={<GraphUseCaseComponent />} />
                     <Route path="*" element={<Navigate to="/arrays" replace />} />
                 </Routes>
             </div>
